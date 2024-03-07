@@ -26,7 +26,7 @@ export const Register = () => {
   const mutation = useMutation(apiClient.Register, {
     onSuccess: async () => {
       showToast({
-        message: "Account created successfully",
+        message: "User registered successfully",
         type: "SUCCESS",
       });
       await QueryClient.invalidateQueries("validate-token");
