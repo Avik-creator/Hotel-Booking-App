@@ -1,3 +1,4 @@
+import React from "react";
 export const Hero: React.FC = () => {
   return (
     <div className="bg-blue-800 pb-16">
