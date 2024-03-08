@@ -4,6 +4,7 @@ import "dotenv/config";
 import userRoutes from "./routes/auth.routes";
 import cookieParser from "cookie-parser";
 import { connectToDB } from "./utils/connectToDB";
+import path from "path";
 
 const app = express();
 console.log(process.env.FRONTEND_URL);
@@ -15,6 +16,7 @@ app.use(
   })
 );
 connectToDB();
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "16kb" }));
 

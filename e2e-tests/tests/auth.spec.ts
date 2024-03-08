@@ -18,14 +18,23 @@ test("should allow the user to sign in", async ({ page }) => {
   await page.getByRole("button", { name: "Sign Out" }).click();
 });
 
-test("get started link", async ({ page }) => {
-  await page.goto("https://playwright.dev/");
-
-  // Click the get started link.
-  await page.getByRole("link", { name: "Get started" }).click();
-
-  // Expects page to have a heading with the name of Installation.
+test("Should allow the user to sign up", async ({ page }) => {
+  const testEmail = "test" + Math.floor(Math.random() * 90000) + "@test.com";
+  await page.goto(UI_URL);
+  await page.getByRole("link", { name: "Sign In" }).click();
+  await page.getByRole("link", { name: "Create an account here" }).click();
   await expect(
-    page.getByRole("heading", { name: "Installation" })
+    page.getByRole("heading", { name: "Create an Account" })
   ).toBeVisible();
+  await page.locator('[name="firstName"]').fill("test_first_name");
+  await page.locator('[name="lastName"]').fill("test_last_name");
+  await page.locator('[name="email"]').fill(testEmail);
+  await page.locator('[name="password"]').fill("password");
+  await page.locator('[name="confirmPassword"]').fill("password");
+
+  await page.getByRole("button", { name: "Create Account" }).click();
+  await expect(page.getByText("User registered successfully")).toBeVisible();
+  await expect(page.getByRole("link", { name: "My Bookings" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "My Hotels" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Sign Out" })).toBeVisible();
 });
