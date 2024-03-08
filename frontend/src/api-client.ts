@@ -61,7 +61,7 @@ export const signOut = async () => {
 };
 
 export const addMyHotel = async (hotelFormData: FormData) => {
-  const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+  const response = await fetch(`${API_BASE_URL}/api/v1/my-hotels`, {
     method: "POST",
     credentials: "include",
     body: hotelFormData,
@@ -75,7 +75,7 @@ export const addMyHotel = async (hotelFormData: FormData) => {
 };
 
 export const fetchMyHotels = async (): Promise<HotelType[]> => {
-  const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+  const response = await fetch(`${API_BASE_URL}/api/v1/my-hotels`, {
     credentials: "include",
   });
 

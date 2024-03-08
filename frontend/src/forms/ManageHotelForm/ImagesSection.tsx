@@ -44,7 +44,7 @@ const ImagesSection = () => {
 
         <input
           type="file"
-          multiple
+          multiple={true}
           accept="image/*"
           className="w-full text-gray-700 font-normal"
           {...register("imageFiles", {
