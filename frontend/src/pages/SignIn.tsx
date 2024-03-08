@@ -9,7 +9,7 @@ export type SignInFormData = {
   password: string;
 };
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
   const { showToast } = useAppContext();
   const navigate = useNavigate();
   const queryClient = useQueryClient();

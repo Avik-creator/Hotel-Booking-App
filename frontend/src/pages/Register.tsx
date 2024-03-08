@@ -12,7 +12,7 @@ export type RegisterFormData = {
   confirmPassword: string;
 };
 
-export const Register = () => {
+export const Register: React.FC = () => {
   const { showToast } = useAppContext();
   const QueryClient = useQueryClient();
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import SignOutButton from "./SignoutButton";
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const { isLoggedIn } = useAppContext();
   return (
     <div className="bg-blue-800 py-6">

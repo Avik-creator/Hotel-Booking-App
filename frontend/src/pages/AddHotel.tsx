@@ -3,7 +3,7 @@ import ManageHotelForm from "../forms/ManageHotelForm/ManageHotelForm";
 import { useAppContext } from "../contexts/AppContext";
 import * as apiClient from "../api-client";
 
-const AddHotel = () => {
+const AddHotel: React.FC = () => {
   const { showToast } = useAppContext();
 
   const { mutate, isLoading } = useMutation(apiClient.addMyHotel, {
