@@ -30,6 +30,10 @@ app.use(express.json({ limit: "16kb" }));
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/my-hotels", hotelRoutes);
 
+app.get("*", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+});
+
 const port = process.env.PORT || 7000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
