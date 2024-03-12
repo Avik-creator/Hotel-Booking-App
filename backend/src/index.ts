@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import userRoutes from "./routes/auth.routes";
+import searchHotels from "./routes/hotels.routes";
 import hotelRoutes from "./routes/myHotels.routes";
 import cookieParser from "cookie-parser";
 import { connectToDB } from "./utils/connectToDB";
@@ -29,6 +30,7 @@ app.use(express.json({ limit: "16kb" }));
 
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/my-hotels", hotelRoutes);
+app.use("/api/v1/hotels", searchHotels);
 
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
