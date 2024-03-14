@@ -1,4 +1,3 @@
-<img width="1678" alt="Screenshot 2024-03-14 at 10 05 27 PM" src="https://github.com/Avik-creator/Hotel-Booking-App/assets/77090462/e0b63515-48e7-4331-8edb-b0a510814a13">
 # Hotel Booking App
 
   - This is a Hotel Booking App in which a user can add their hotels and can also book a hotel in which the user will be prompted to give their card details. The payment will be processed by stripe.
