@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as apiClient from "../api-client";
 import ManageHotelForm from "../forms/ManageHotelForm/ManageHotelForm";
 import { useAppContext } from "../contexts/AppContext";
@@ -7,6 +7,7 @@ import { useAppContext } from "../contexts/AppContext";
 const EditHotel = () => {
   const { hotelId } = useParams();
   const { showToast } = useAppContext();
+  const navigate = useNavigate();
 
   const { data: hotel } = useQuery(
     "fetchMyHotelById",
@@ -25,12 +26,31 @@ const EditHotel = () => {
     },
   });
 
+  const deleteHotelMutation = useMutation(apiClient.deleteMyHotel, {
+    onSuccess: () => {
+      showToast({ message: "Hotel Deleted!", type: "SUCCESS" });
+      navigate("/my-hotels");
+    },
+    onError: () => {
+      showToast({ message: "Error Deleting Hotel", type: "ERROR" });
+    },
+  });
+
   const handleSave = (hotelFormData: FormData) => {
     mutate(hotelFormData);
   };
 
+  const handleDelete = (hotelId: string) => {
+    deleteHotelMutation.mutate(hotelId);
+  };
+
   return (
-    <ManageHotelForm hotel={hotel} onSave={handleSave} isLoading={isLoading} />
+    <ManageHotelForm
+      hotel={hotel}
+      onSave={handleSave}
+      isLoading={isLoading}
+      onDelete={handleDelete}
+    />
   );
 };
 

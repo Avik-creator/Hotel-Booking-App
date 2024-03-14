@@ -26,9 +26,10 @@ type Props = {
   hotel?: HotelType;
   onSave: (hotelFormData: FormData) => void;
   isLoading: boolean;
+  onDelete?: (hotelId: string) => void;
 };
 
-const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
+const ManageHotelForm = ({ onSave, isLoading, hotel, onDelete }: Props) => {
   const formMethods = useForm<HotelFormData>();
   const { handleSubmit, reset } = formMethods;
 
@@ -83,6 +84,14 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
             className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl disabled:bg-gray-500"
           >
             {isLoading ? "Saving..." : "Save"}
+          </button>
+
+          <button
+            type="button"
+            className="bg-red-600 text-white p-2 font-bold hover:bg-red-500 text-xl ml-2"
+            onClick={() => onDelete && hotel && onDelete(hotel._id)}
+          >
+            Delete
           </button>
         </span>
       </form>
