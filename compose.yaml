@@ -1,0 +1,21 @@
+services:
+  react-app:
+    image: vite-app
+    build: ./frontend
+    stdin_open: true
+    ports:
+      - "5173:5173"
+    networks:
+      - mern-app
+
+  node-web-api:
+    image: node-web-api
+    build: ./backend
+    ports:
+      - "3000:3000"
+    networks:
+      - mern-app
+
+networks:
+  mern-app:
+    driver: bridge
